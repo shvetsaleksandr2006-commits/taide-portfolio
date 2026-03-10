@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Taide — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="bg-canvas"></div>
+  <div class="noise"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="page">
+
+    <div class="art-frame">
+      <div class="art-frame-inner">🎨</div>
+    </div>
+
+    <header class="header">
+      <p class="header-eyebrow">YTO · TUVA · 25b</p>
+      <h1>Taide</h1>
+      <p class="header-sub">Kuvataide &amp; luovuus</p>
+      <div class="divider"></div>
+      <p class="header-name">Oleksandr (Alex) Shvets</p>
+    </header>
+
+    <p class="section-label">Materiaalit</p>
+
+    <div class="links">
+
+      <a href="LISÄÄ_LINKKI_TÄHÄN" class="link-card">
+        <div class="link-icon">📊</div>
+        <div class="link-text">
+          <div class="link-title">Esitys</div>
+          <div class="link-desc">PowerPoint-presentaatio</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="LISÄÄ_LINKKI_TÄHÄN" class="link-card">
+        <div class="link-icon">📄</div>
+        <div class="link-text">
+          <div class="link-title">Word-dokumentti</div>
+          <div class="link-desc">Kirjallinen työ</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+    </div>
+
+    <footer class="footer">
+      <p>TUVA · Taide · 2025</p>
+    </footer>
+
+  </div>
+
+  <script>
+    for (let i = 0; i < 25; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.cssText =
+        left:${Math.random()*100}vw;
+        top:${Math.random()*100}vh;
+        --pd:${4+Math.random()*8}s;
+        --delay:${Math.random()*6}s;
+        --tx:${(Math.random()-0.5)*100}px;
+        --ty:${-40-Math.random()*100}px;
+        width:${1+Math.random()*2}px;
+        height:${1+Math.random()*2}px;
+      ;
+      document.body.appendChild(p);
+    }
+
+    document.querySelectorAll('.link-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        ripple.style.cssText =
+          position:absolute;border-radius:50%;
+          background:rgba(232,201,122,0.3);
+          width:10px;height:10px;
+          left:${e.clientX-rect.left-5}px;
+          top:${e.clientY-rect.top-5}px;
+          transform:scale(0);
+          animation:rippleAnim 0.6s ease-out forwards;
+          pointer-events:none;z-index:10;
+        ;
+        this.appendChild(ripple);
+        setTimeout(()=>ripple.remove(), 700);
+      });
+    });
+  </script>
+
+</body>
+</html>
